@@ -1,0 +1,19 @@
+{
+  "name": "qb-learn-js",
+  "version": "1.0.0",
+  "description": "Tutorial scripts for exploring and learning javascript concepts.",
+  "repository": "quicbit-js/qb-learn-js",
+  "keywords": [
+    "learn",
+    "javascript",
+    "object",
+    "new",
+    "create",
+    "prototype",
+    "understand",
+    "inheritance",
+    "debug"
+  ],
+  "author": "Matthew Voss",
+  "license": "ISC"
+}
