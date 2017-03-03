@@ -1,6 +1,7 @@
 // Object Prototypes 3/3
 //
-// Show how javascript object inheritance works
+// Run this script and explore its output to understand
+// how javascript object inheritance works
 // and the differences between
 // 'new' and 'Object.create'.
 

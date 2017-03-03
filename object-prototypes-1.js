@@ -1,7 +1,8 @@
 // Object Prototypes 1/3
 //
-// Learn functions that allow us to investigate objects.
-// Use these functions to understand objects, object properties, their prototypes
+// Run this script and explore it's output to learn the functions that help
+// investigate objects.  See how we
+// use these functions to understand objects, object properties, their prototypes
 // and prototype properties.
 
 var fns = require('./tutorial-fns')

@@ -1,6 +1,7 @@
 // Object Prototypes 2/3
 //
-// Learn how to change (or "mess with") an object's prototype and
+// Run this script and explore its output to  how to change
+// (a.k.a "mess with") an object's prototype and
 // what happens when we do.
 
 var fns = require('./tutorial-fns')
