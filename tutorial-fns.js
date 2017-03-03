@@ -95,10 +95,11 @@ function logr(expr) {
     var res
     try {
         res = eval( '(' + expr + ')' )
+        log('> ', res) // handle objects without prototypes
     } catch(e) {
-        res = e
+        res = e.stack.split('\n').map((l) => '> ' + l).join('\n')
+        log(res)
     }
-    log('> ', res) // handle objects without prototypes
 }
 
 module.exports = {

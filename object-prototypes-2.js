@@ -55,9 +55,7 @@ then call toString()...
 > var p = obj.__proto__;
 > obj.__proto__ = null;     // remove 
 > obj.__proto__ = p;        // add back
-> obj.toString();
-`
-)
+> obj.toString();`)
 
 obj = {};
 var obj_proto = obj.__proto__;
@@ -69,15 +67,20 @@ logr(`obj.toString()`)
 log(`
 How can that be?  We assigned obj.__proto__ to the same prototype.  Let's take a closer
 look at the object..
-`)
 
-proto(obj)
+> proto( obj );`)
+
+proto( obj )
 
 log(`
 This object looks very much like the original, but  
 notice that __proto__ at the top level is simply a *value*
-property, not a result of Object.getPrototypeOf(). 
- 
+property, not a result of Object.getPrototypeOf().
+`)
+
+proto(`{}`)
+
+log(`
 > Object.getPrototypeOf( obj );
 > ${Object.getPrototypeOf( obj )}
  
@@ -164,17 +167,17 @@ OUTPUT:
  throw error:
 
  > { __proto__: null }.toString()
- >  TypeError: (intermediate value).toString is not a function
- at eval (eval at logr (/Users/dad/ghub/qb-learn-js/tutorial-fns.js:97:32), <anonymous>:1:22)
- at logr (/Users/dad/ghub/qb-learn-js/tutorial-fns.js:97:15)
- at Object.<anonymous> (/Users/dad/ghub/qb-learn-js/object-prototypes-2.js:44:1)
- at Module._compile (module.js:541:32)
- at Object.Module._extensions..js (module.js:550:10)
- at Module.load (module.js:458:32)
- at tryModuleLoad (module.js:417:12)
- at Function.Module._load (module.js:409:3)
- at Function.Module.runMain (module.js:575:10)
- at startup (node.js:160:18)
+ > TypeError: (intermediate value).toString is not a function
+ >     at eval (eval at logr (/Users/dad/ghub/qb-learn-js/tutorial-fns.js:97:32), <anonymous>:1:22)
+ >     at logr (/Users/dad/ghub/qb-learn-js/tutorial-fns.js:97:15)
+ >     at Object.<anonymous> (/Users/dad/ghub/qb-learn-js/object-prototypes-2.js:46:1)
+ >     at Module._compile (module.js:541:32)
+ >     at Object.Module._extensions..js (module.js:550:10)
+ >     at Module.load (module.js:458:32)
+ >     at tryModuleLoad (module.js:417:12)
+ >     at Function.Module._load (module.js:409:3)
+ >     at Function.Module.runMain (module.js:575:10)
+ >     at startup (node.js:160:18)
 
  So let's see what happens if we remove a prototype and add it back, and
  then call toString()...
@@ -184,23 +187,23 @@ OUTPUT:
  > obj.__proto__ = null;     // remove
  > obj.__proto__ = p;        // add back
  > obj.toString();
-
  > obj.toString()
- >  TypeError: obj.toString is not a function
- at eval (eval at logr (/Users/dad/ghub/qb-learn-js/tutorial-fns.js:97:32), <anonymous>:1:6)
- at logr (/Users/dad/ghub/qb-learn-js/tutorial-fns.js:97:15)
- at Object.<anonymous> (/Users/dad/ghub/qb-learn-js/object-prototypes-2.js:64:1)
- at Module._compile (module.js:541:32)
- at Object.Module._extensions..js (module.js:550:10)
- at Module.load (module.js:458:32)
- at tryModuleLoad (module.js:417:12)
- at Function.Module._load (module.js:409:3)
- at Function.Module.runMain (module.js:575:10)
- at startup (node.js:160:18)
+ > TypeError: obj.toString is not a function
+ >     at eval (eval at logr (/Users/dad/ghub/qb-learn-js/tutorial-fns.js:97:32), <anonymous>:1:6)
+ >     at logr (/Users/dad/ghub/qb-learn-js/tutorial-fns.js:97:15)
+ >     at Object.<anonymous> (/Users/dad/ghub/qb-learn-js/object-prototypes-2.js:64:1)
+ >     at Module._compile (module.js:541:32)
+ >     at Object.Module._extensions..js (module.js:550:10)
+ >     at Module.load (module.js:458:32)
+ >     at tryModuleLoad (module.js:417:12)
+ >     at Function.Module._load (module.js:409:3)
+ >     at Function.Module.runMain (module.js:575:10)
+ >     at startup (node.js:160:18)
 
  How can that be?  We assigned obj.__proto__ to the same prototype.  Let's take a closer
  look at the object..
 
+ > proto( obj );
  >     <object>
  >         __proto__:          <object>                                value
  >             constructor:        <function "Object">                 value
@@ -220,6 +223,23 @@ OUTPUT:
  This object looks very much like the original, but
  notice that __proto__ at the top level is simply a *value*
  property, not a result of Object.getPrototypeOf().
+
+ > proto( {} )
+ >     <object "Object">
+ >         __proto__:          <object>                                getPrototypeOf
+ >             constructor:        <function "Object">                 value
+ >             toString:           <function "toString">               value
+ >             toLocaleString:     <function "toLocaleString">         value
+ >             valueOf:            <function "valueOf">                value
+ >             hasOwnProperty:     <function "hasOwnProperty">         value
+ >             isPrototypeOf:      <function "isPrototypeOf">          value
+ >             propertyIsEnumerable: <function "propertyIsEnumerable">  value
+ >             __defineGetter__:   <function "__defineGetter__">       value
+ >             __lookupGetter__:   <function "__lookupGetter__">       value
+ >             __defineSetter__:   <function "__defineSetter__">       value
+ >             __lookupSetter__:   <function "__lookupSetter__">       value
+ >             __proto__:          null                                get/set accessor
+
 
  > Object.getPrototypeOf( obj );
  > null
@@ -245,17 +265,17 @@ OUTPUT:
 
  > var setPrototypeOf = Object.setPrototypeOf
  > Object.setPrototypeOf = function(obj, proto) { return "ha! - I'm not setin' nutin'!" ) }
- >  SyntaxError: Unexpected token )
- at logr (/Users/dad/ghub/qb-learn-js/tutorial-fns.js:97:32)
- at Object.<anonymous> (/Users/dad/ghub/qb-learn-js/object-prototypes-2.js:107:1)
- at Module._compile (module.js:541:32)
- at Object.Module._extensions..js (module.js:550:10)
- at Module.load (module.js:458:32)
- at tryModuleLoad (module.js:417:12)
- at Function.Module._load (module.js:409:3)
- at Function.Module.runMain (module.js:575:10)
- at startup (node.js:160:18)
- at node.js:456:3
+ > SyntaxError: Unexpected token )
+ >     at logr (/Users/dad/ghub/qb-learn-js/tutorial-fns.js:97:32)
+ >     at Object.<anonymous> (/Users/dad/ghub/qb-learn-js/object-prototypes-2.js:112:1)
+ >     at Module._compile (module.js:541:32)
+ >     at Object.Module._extensions..js (module.js:550:10)
+ >     at Module.load (module.js:458:32)
+ >     at tryModuleLoad (module.js:417:12)
+ >     at Function.Module._load (module.js:409:3)
+ >     at Function.Module.runMain (module.js:575:10)
+ >     at startup (node.js:160:18)
+ >     at node.js:456:3
 
  Let's try it now...
 
