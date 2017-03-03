@@ -222,9 +222,8 @@ is confusing, but now that we have shown the innards, I hope it is clear.
  ==============================================
 
 
- function Moose(prop) { this[prop] = 1 }
- Moose
-
+ > function Moose(prop) { this[prop] = 1 }
+ > proto( Moose )
  >     <function "Moose">
  >         length:             1                                       value
  >         name:               Moose                                   value
@@ -264,7 +263,8 @@ is confusing, but now that we have shown the innards, I hope it is clear.
  So let's change the prototype to a bare-bones object to see how
  it works with the 'new' operator...
 
- obj.prototype = {a:1, b:2, __proto__: null}
+ > obj.prototype = { a: 1, b: 2, __proto__: null, constructor: Moose };
+ > proto( Moose );
  >     <function "Moose">
  >         length:             1                                       value
  >         name:               Moose                                   value
@@ -277,8 +277,7 @@ is confusing, but now that we have shown the innards, I hope it is clear.
  >         __proto__:          <function "">                           getPrototypeOf
 
 
- var moose = new Moose('I AM MOOSE!')
-
+ > proto( new Moose('I AM MOOSE!') )
  >     <object "Moose">
  >         I AM MOOSE!:        1                                       value
  >         __proto__:          <object>                                getPrototypeOf
@@ -303,20 +302,44 @@ is confusing, but now that we have shown the innards, I hope it is clear.
  object.  IOW, returning an old object from Moose() will cause new to not create anything
  new, which is again... weird.
 
+ > var shared_animal = { shared_prop: '', constructor: Moose, __proto__: null }
+ > function Animal() { return shared_animal }
+ > Moose.prototype = new Animal();
+ > moose1 = new Moose('I AM MOOSE!');
+ > moose2 = new Moose('I AM MOOSE AS WELL!')
+
+ > proto(moose1)
  >     <object "Moose">
  >         I AM MOOSE!:        1                                       value
  >         __proto__:          <object>                                getPrototypeOf
  >             shared_prop:                                            value
  >             constructor:        <function "Moose">                  value
 
+
+ > proto(moose2)
  >     <object "Moose">
  >         I AM MOOSE AS WELL!: 1                                      value
  >         __proto__:          <object>                                getPrototypeOf
  >             shared_prop:                                            value
  >             constructor:        <function "Moose">                  value
 
- Moose { 'I AM MOOSE!': 1 } 'LET US SHARE STUFF!'
- Moose { 'I AM MOOSE AS WELL!': 1 } 'LET US SHARE STUFF!'
+
+ > shared_animal.shared_prop = "LET US SHARE STUFF!";
+ > proto( moose1 );
+ >     <object "Moose">
+ >         I AM MOOSE!:        1                                       value
+ >         __proto__:          <object>                                getPrototypeOf
+ >             shared_prop:        LET US SHARE STUFF!                 value
+ >             constructor:        <function "Moose">                  value
+
+
+ > proto( moose2 );
+ >     <object "Moose">
+ >         I AM MOOSE AS WELL!: 1                                      value
+ >         __proto__:          <object>                                getPrototypeOf
+ >             shared_prop:        LET US SHARE STUFF!                 value
+ >             constructor:        <function "Moose">                  value
+
 
  Creating inheritance hierarchies with the 'new' operator and function prototypes
  is confusing, but now that we have shown the innards, I hope it is clear.
