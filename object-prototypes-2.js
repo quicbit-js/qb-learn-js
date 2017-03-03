@@ -3,6 +3,8 @@
 // Run this script and explore its output to  how to change
 // (a.k.a "mess with") an object's prototype and
 // what happens when we do.
+//
+// (OUTPUT of this script is included at the bottom of the file)
 
 var fns = require('./tutorial-fns')
 var section = fns.section

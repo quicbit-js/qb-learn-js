@@ -4,6 +4,8 @@
 // investigate objects.  See how we
 // use these functions to understand objects, object properties, their prototypes
 // and prototype properties.
+//
+// (OUTPUT of this script is included at the bottom of the file)
 
 var fns = require('./tutorial-fns')
 var section = fns.section

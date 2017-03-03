@@ -4,6 +4,8 @@
 // how javascript object inheritance works
 // and the differences between
 // 'new' and 'Object.create'.
+//
+// (OUTPUT of this script is included at the bottom of the file)
 
 var fns = require('./tutorial-fns')
 var section = fns.section
