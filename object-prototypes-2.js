@@ -73,8 +73,8 @@ look at the object..
 proto( obj )
 
 log(`
-This object looks very much like the original, but  
-notice that __proto__ at the top level is simply a *value*
+The modified object above looks very much like the default object below, but  
+notice that in the modified object that __proto__ at the top level is a *value*
 property, not a result of Object.getPrototypeOf().
 `)
 
