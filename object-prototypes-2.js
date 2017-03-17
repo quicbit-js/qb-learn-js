@@ -12,7 +12,6 @@ var log = fns.log
 var loge = fns.logexec
 var proto = fns.proto
 
-
 section(`
 In object-prototypes-1, we showed that objects are normally created with 
 11 function value properties in
@@ -27,7 +26,7 @@ setting __proto__ to null...
 > obj.__proto__ = null; 
 > obj;`)
 
-obj = {}; obj.__proto__ = null;
+var obj = {}; obj.__proto__ = null
 proto(obj)
 
 log(`
@@ -45,7 +44,6 @@ throw error:
 
 loge(`{ __proto__: null }.toString()`)
 
-
 log(
     `
 So let's see what happens if we remove a prototype and add it back, and
@@ -57,12 +55,11 @@ then call toString()...
 > obj.__proto__ = p;        // add back
 > obj.toString();`)
 
-obj = {};
-var obj_proto = obj.__proto__;
-obj.__proto__ = null;
-obj.__proto__ = obj_proto;
+obj = {}
+var obj_proto = obj.__proto__
+obj.__proto__ = null
+obj.__proto__ = obj_proto
 loge(`obj.toString()`)
-
 
 log(`
 How can that be?  We assigned obj.__proto__ to the same prototype.  Let's take a closer
@@ -70,7 +67,7 @@ look at the object..
 
 > proto( obj );`)
 
-proto( obj )
+proto(obj)
 
 log(`
 The modified object above looks very much like the default object below, but  
@@ -82,7 +79,7 @@ proto(`{}`)
 
 log(`
 > Object.getPrototypeOf( obj );
-> ${Object.getPrototypeOf( obj )}
+> ${Object.getPrototypeOf(obj)}
  
 It isn't actually a prototype, it is just a property called "__proto__".  
 None of its properties (functions) are in scope when accessing
@@ -106,8 +103,8 @@ just that with great power comes great responsibility and all that)
 
 log(`> var setPrototypeOf = Object.setPrototypeOf`)
 var setPrototypeOf = Object.setPrototypeOf
-Object.setPrototypeOf = function() {
-    return "ha! - I'm not setin' nutin'!"
+Object.setPrototypeOf = function () {
+  return "ha! - I'm not setin' nutin'!"
 }
 loge(`Object.setPrototypeOf = function(obj, proto) { return "ha! - I'm not setin' nutin'!" ) }`)
 
@@ -145,14 +142,12 @@ OUTPUT:
 
  ==============================================
 
-
  setting __proto__ to null...
 
  > var obj = {};
  > obj.__proto__ = null;
  > obj;
  >     <object>
-
 
  We can also use an object literal to create an object without a __proto__:
 
@@ -161,7 +156,6 @@ OUTPUT:
 
  > proto( { __proto__: null }.__proto__ )
  >     undefined
-
 
  So the prototype property is gone.  So calling functions like toString(), valueOf()... will
  throw error:
@@ -219,7 +213,6 @@ OUTPUT:
  >             __lookupSetter__:   <function "__lookupSetter__">       value
  >             __proto__:          null                                get/set accessor
 
-
  The modified object above looks very much like the default object below, but
  notice that in the modified object that __proto__ at the top level is a *value*
  property, not a result of Object.getPrototypeOf().
@@ -239,7 +232,6 @@ OUTPUT:
  >             __defineSetter__:   <function "__defineSetter__">       value
  >             __lookupSetter__:   <function "__lookupSetter__">       value
  >             __proto__:          null                                get/set accessor
-
 
  > Object.getPrototypeOf( obj );
  > null
@@ -293,7 +285,6 @@ OUTPUT:
  >         a:                  1                                       value
  >         __proto__:          <object>                                getPrototypeOf
  >             b:                  2                                   value
-
 
  That's better.  Notice in this last statement, we also set our first raw/custom
  prototype.  Pause for a moment and congratulate yourself - have a cookie.

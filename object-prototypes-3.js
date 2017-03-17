@@ -32,8 +32,7 @@ That's because Object.create() takes a prototype as input.
 So to create the same object as the literal '{}', we can use:
 `)
 
-proto( 'Object.create( {}.__proto__ )' )
-
+proto('Object.create( {}.__proto__ )')
 
 section(`
 Now let's take a close look at functions and the function "prototype"
@@ -44,7 +43,7 @@ log(`
 > function Moose(prop) { this[prop] = 1 }
 > proto( Moose )`)
 
-function Moose(prop) { this[prop] = 1 }
+function Moose (prop) { this[prop] = 1 }
 proto(Moose)
 
 log(`
@@ -68,11 +67,11 @@ it works with the 'new' operator...
 > proto( Moose );`)
 
 Moose.prototype = { a: 1, b: 2, __proto__: null, constructor: Moose }
-proto( Moose )
+proto(Moose)
 
 log(`
 > proto( new Moose('I AM MOOSE!') )`)
-proto( new Moose('I AM MOOSE!') )
+proto(new Moose('I AM MOOSE!'))
 
 log(`
 ... and there we have it, the new operator set the object's __proto__ instance
@@ -96,13 +95,13 @@ new, which is again... weird.
 > function Animal() { return shared_animal }
 > Moose.prototype = new Animal();
 > moose1 = new Moose('I AM MOOSE!');
-> moose2 = new Moose('I AM MOOSE AS WELL!')`);
+> moose2 = new Moose('I AM MOOSE AS WELL!')`)
 
 var shared_animal = { shared_prop: '', constructor: Moose, __proto__: null }
-function Animal() { return shared_animal }
+function Animal () { return shared_animal }
 Moose.prototype = new Animal()
-moose1 = new Moose('I AM MOOSE!')
-moose2 = new Moose('I AM MOOSE AS WELL!')
+var moose1 = new Moose('I AM MOOSE!')
+var moose2 = new Moose('I AM MOOSE AS WELL!')
 
 log(`
 > proto(moose1)`)
@@ -115,7 +114,7 @@ log(`
 > shared_animal.shared_prop = "LET US SHARE STUFF!";
 > proto( moose1 );`)
 
-shared_animal.shared_prop = "LET US SHARE STUFF!"
+shared_animal.shared_prop = 'LET US SHARE STUFF!'
 proto(moose1)
 
 log(`
@@ -137,7 +136,6 @@ is confusing, but now that we have shown the innards, I hope it is clear.
  Object literals, new Object(), and Object.create().
 
  ==============================================
-
 
  Do you see the difference between these three objects?
 
@@ -190,7 +188,6 @@ is confusing, but now that we have shown the innards, I hope it is clear.
  >                 __lookupSetter__:   <function "__lookupSetter__">   value
  >                 __proto__:          null                            get/set accessor
 
-
  The Object.create( {} ) has an extra prototype level.
  That's because Object.create() takes a prototype as input.
  So to create the same object as the literal '{}', we can use:
@@ -211,15 +208,12 @@ is confusing, but now that we have shown the innards, I hope it is clear.
  >             __lookupSetter__:   <function "__lookupSetter__">       value
  >             __proto__:          null                                get/set accessor
 
-
-
  ==============================================
 
  Now let's take a close look at functions and the function "prototype"
  property.
 
  ==============================================
-
 
  > function Moose(prop) { this[prop] = 1 }
  > proto( Moose )
@@ -244,7 +238,6 @@ is confusing, but now that we have shown the innards, I hope it is clear.
  >                 __lookupSetter__:   <function "__lookupSetter__">   value
  >                 __proto__:          null                            get/set accessor
  >         __proto__:          <function "">                           getPrototypeOf
-
 
  Here we see the introduction of the 'prototype' property.
  It should look familiar - it's the default object __proto__
@@ -275,7 +268,6 @@ is confusing, but now that we have shown the innards, I hope it is clear.
  >             constructor:        <function "Moose">                  value
  >         __proto__:          <function "">                           getPrototypeOf
 
-
  > proto( new Moose('I AM MOOSE!') )
  >     <object "Moose">
  >         I AM MOOSE!:        1                                       value
@@ -283,7 +275,6 @@ is confusing, but now that we have shown the innards, I hope it is clear.
  >             a:                  1                                   value
  >             b:                  2                                   value
  >             constructor:        <function "Moose">                  value
-
 
  ... and there we have it, the new operator set the object's __proto__ instance
  to the 'prototype' we set in the function.  It was simply transferred over.
@@ -294,7 +285,6 @@ is confusing, but now that we have shown the innards, I hope it is clear.
 
  We can see that whatever property (or function...) that we set on 'this' is
  applied to the new instance, one level above the prototype.
-
 
  'new' has some other weirdness to be aware of.  If the constructor function (Moose())
  returns an object, then THAT object will become the instance rather than a newly created
@@ -314,14 +304,12 @@ is confusing, but now that we have shown the innards, I hope it is clear.
  >             shared_prop:                                            value
  >             constructor:        <function "Moose">                  value
 
-
  > proto(moose2)
  >     <object "Moose">
  >         I AM MOOSE AS WELL!: 1                                      value
  >         __proto__:          <object>                                getPrototypeOf
  >             shared_prop:                                            value
  >             constructor:        <function "Moose">                  value
-
 
  > shared_animal.shared_prop = "LET US SHARE STUFF!";
  > proto( moose1 );
@@ -331,14 +319,12 @@ is confusing, but now that we have shown the innards, I hope it is clear.
  >             shared_prop:        LET US SHARE STUFF!                 value
  >             constructor:        <function "Moose">                  value
 
-
  > proto( moose2 );
  >     <object "Moose">
  >         I AM MOOSE AS WELL!: 1                                      value
  >         __proto__:          <object>                                getPrototypeOf
  >             shared_prop:        LET US SHARE STUFF!                 value
  >             constructor:        <function "Moose">                  value
-
 
  Creating inheritance hierarchies with the 'new' operator and function prototypes
  is confusing, but now that we have shown the innards, I hope it is clear.

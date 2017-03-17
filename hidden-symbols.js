@@ -12,11 +12,8 @@
 //
 
 var fns = require('./tutorial-fns')
-var section = fns.section
 var log = fns.log
 var loge = fns.logexec
-var logr = fns.logr
-var proto = fns.proto
 
 log(`
 Start with an empty object - with no prototype, and confirm it has
@@ -25,7 +22,6 @@ no properties or symbols:
 loge(`{__proto__: null}`)
 loge(`Object.getOwnPropertyNames({__proto__: null})`)
 loge(`Object.getOwnPropertySymbols({__proto__: null})`)
-
 
 log(`
 Compare that with prototype:`)
@@ -47,8 +43,7 @@ Defined a symbol property:
 > Object.defineProperty(q, Symbol.toStringTag, { __proto__: null, get: function toStringTag() { return 'I_AM_Q_SYM!' } } )
 `)
 var q = {__proto__: null}               // see object-prototypes-2.js for more about prototypes
-Object.defineProperty(q, Symbol.toStringTag, { __proto__: null, get: function toStringTag() { return 'I_AM_Q_SYM!' } } )
-
+Object.defineProperty(q, Symbol.toStringTag, { __proto__: null, get: function toStringTag () { return 'I_AM_Q_SYM!' } })
 
 log(`
 And it does not show up as a property:
@@ -62,10 +57,8 @@ log(`
 > log(Object.getOwnPropertySymbols(q))`)
 log('>', Object.getOwnPropertySymbols(q))
 
-
 log(`
 
 ... and accessed by that symbol:
 > q[Object.getOwnPropertySymbols(q)[0]]()`)
 log('>', q[Object.getOwnPropertySymbols(q)[0]])
-

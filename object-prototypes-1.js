@@ -23,8 +23,7 @@ can see the 'enumerable' properties of an object:
 `)
 
 log(`> console.log( { a: 1, b: 2 } )`)
-console.log( '>', { a: 1, b: 2 } )
-
+console.log('>', { a: 1, b: 2 })
 
 log(`
 But these don't show non-enumerable properties of an object.  The
@@ -33,7 +32,7 @@ will appear to be empty using these functions:
 `)
 
 log(`> console.log( Object.getPrototypeOf( { a: 1, b: 2 } )`)
-console.log( '>', Object.getPrototypeOf( { a: 1, b: 2 } ) )
+console.log('>', Object.getPrototypeOf({ a: 1, b: 2 }))
 
 log(`
 Obect.getOwnPropertyNames() in combination with Object.getOwnPropertyDescriptor()
@@ -157,7 +156,6 @@ OUTPUT:
  >             __lookupSetter__:   <function "__lookupSetter__">
  >             __proto__:          null
 
-
  However, when you see a "__proto__" looking like a property in a debug view
  remember that it probably isn't a property at any level except the base object level - and
  in that case, it is not a simple value property, but a pair of get/set accessor functions.
@@ -180,7 +178,6 @@ OUTPUT:
  >             __defineSetter__:   <function "__defineSetter__">       value
  >             __lookupSetter__:   <function "__lookupSetter__">       value
  >             __proto__:          null                                get/set accessor
-
 
  The 'proto' function shows us the 11 function value-properties and 1 prototype accessor which
  returns null for the prototype itself.
