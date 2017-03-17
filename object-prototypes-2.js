@@ -9,7 +9,7 @@
 var fns = require('./tutorial-fns')
 var section = fns.section
 var log = fns.log
-var logr = fns.logr
+var loge = fns.logexec
 var proto = fns.proto
 
 
@@ -43,7 +43,7 @@ So the prototype property is gone.  So calling functions like toString(), valueO
 throw error:
 `)
 
-logr(`{ __proto__: null }.toString()`)
+loge(`{ __proto__: null }.toString()`)
 
 
 log(
@@ -61,7 +61,7 @@ obj = {};
 var obj_proto = obj.__proto__;
 obj.__proto__ = null;
 obj.__proto__ = obj_proto;
-logr(`obj.toString()`)
+loge(`obj.toString()`)
 
 
 log(`
@@ -109,12 +109,12 @@ var setPrototypeOf = Object.setPrototypeOf
 Object.setPrototypeOf = function() {
     return "ha! - I'm not setin' nutin'!"
 }
-logr(`Object.setPrototypeOf = function(obj, proto) { return "ha! - I'm not setin' nutin'!" ) }`)
+loge(`Object.setPrototypeOf = function(obj, proto) { return "ha! - I'm not setin' nutin'!" ) }`)
 
 log(`
 Let's try it now...
 `)
-logr(`Object.setPrototypeOf( {a:1}, Object.getPrototypeOf( { b: 2 } ) )`)
+loge(`Object.setPrototypeOf( {a:1}, Object.getPrototypeOf( { b: 2 } ) )`)
 
 log(`
 Poor grammar aside, that's not a good thing to do to the environment.

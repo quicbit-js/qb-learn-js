@@ -10,7 +10,6 @@
 var fns = require('./tutorial-fns')
 var section = fns.section
 var log = fns.log
-var logr = fns.logr
 var proto = fns.proto
 
 section(`

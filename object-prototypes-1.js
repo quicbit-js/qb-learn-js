@@ -10,7 +10,7 @@
 var fns = require('./tutorial-fns')
 var section = fns.section
 var log = fns.log
-var logr = fns.logr
+var logexec = fns.logexec
 var proto = fns.proto
 
 section(`
@@ -42,13 +42,13 @@ object's immediate properties, whether
 they are 'enumerable' or not:
 `)
 
-logr(`Object.getOwnPropertyNames( { a:1, b:2 } )`)
-logr(`Object.getOwnPropertyDescriptor( { a:1, b:2 }, 'b' )`)
-logr(`Object.getOwnPropertyNames( Object.getPrototypeOf( { a:1, b:2 } ) )`)
+logexec(`Object.getOwnPropertyNames( { a:1, b:2 } )`)
+logexec(`Object.getOwnPropertyDescriptor( { a:1, b:2 }, 'b' )`)
+logexec(`Object.getOwnPropertyNames( Object.getPrototypeOf( { a:1, b:2 } ) )`)
 log(`
 or
 `)
-logr(`Object.getOwnPropertyNames( { a:1, b:2 }.__proto__ )`)
+logexec(`Object.getOwnPropertyNames( { a:1, b:2 }.__proto__ )`)
 
 log(`
 debuggers often use the

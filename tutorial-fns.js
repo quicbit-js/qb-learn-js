@@ -88,9 +88,9 @@ function proto(expr_or_obj, opt) {
     log('')
 }
 
-// execute the given expression and print both the expression and result in
+// execute the given expression and print both the expression and (r)esult in
 // '> ....' indented form.
-function logr(expr) {
+function logexec(expr) {
     log( '> ' + expr )
     var res
     try {
@@ -102,9 +102,20 @@ function logr(expr) {
     }
 }
 
+// log each argument using indented form.
+// arguments are converted to string
+function logr() {
+    if(typeof s_or_a === 'string') {
+        s_or_a = s_or_a.split('\n')
+    }
+    s_or_a.forEach(function(v) {
+        log('>', v)
+    })
+}
+
 module.exports = {
     proto: proto,
-    logr: logr,
+    logexec: logexec,
     log: log,
     section: section
 }
