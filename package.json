@@ -1,8 +1,14 @@
 {
   "name": "qb-learn-js",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Tutorial scripts for exploring and learning javascript concepts.",
+  "homepage": "https://github.com/quicbit-js/qb-learn-js",
+  "url": "https://github.com/quicbit-js/qb-learn-js/issues",
+  "email": "support@quicbit.com",
   "repository": "quicbit-js/qb-learn-js",
+  "files": [
+    "*.js"
+  ],
   "keywords": [
     "learn",
     "javascript",
